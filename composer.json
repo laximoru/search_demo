@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "LaximoSearch\\": "LaximoSearch/"
+    }
+  },
+  "require": {
+    "laximoru/guayaquillib": "3.*",
+    "twig/twig": "3.*",
+    "guzzlehttp/guzzle": "*",
+    "ext-json": "*",
+    "laximoru/search": "1.1.*"
+  }
+}

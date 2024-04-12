@@ -1,0 +1,27 @@
+<div class="grid-container">
+    <h2>{{ 'SELECT_MODIFICATION'|t }}</h2>
+    {% for vehicle in foundedVehicles %}
+        {% set startAttrs = vehicle.attributes|slice(0, 2) %}
+        {% set startAttrString = '' %}
+        {% for attr in startAttrs %}
+            {% set startAttrString = startAttrString ~ ', ' ~ attr.label ~ ': ' ~ attr.values|join('; ') %}
+        {% endfor %}
+        <ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
+            <li class="accordion-item" data-accordion-item>
+                <a href="javascript:void(0)"
+                   class="accordion-title">{{ vehicle.brand ~ ' ' ~ vehicle.name ~ startAttrString ~ '...' }}</a>
+                <div class="accordion-content" data-tab-content>
+                    {% for attr in vehicle.attributes %}
+                        <div class="grid-x">
+                            <div class="name cell medium-2 gray small-6">{{ attr.label }}</div>
+                            <div class="value cell medium-10 small-6">{{ attr.values|join("\n") | nl2br | raw }}</div>
+                        </div>
+                    {% endfor %}
+                    <br/>
+                    <a class="expanded button"
+                       href="{{ createUrl('search', vehicle.state == 'success' ? 'show' : 'index', {'autoId': vehicle.id, 'query': query}) }}">{{ 'SELECT'|t }}</a>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
+</div>

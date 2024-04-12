@@ -1,0 +1,63 @@
+{% block drop_form %}
+    <div class="grid-x" id="uploadForm">
+        <div class="cell medium-6 small-12">
+            <form method="POST" enctype="multipart/form-data" autocomplete="off" data-role="adminForm"
+                  class="text-center">
+                <div class="grid-x">
+                    <div class="cell medium-6 small-12">
+                        <div class="grid-container">
+                            <label for="charset">{{ 'FIELD_CHARSET'|t }}</label>
+                            <select name="charset" id="charset">
+                                <option value="default">{{ 'CHARSET_DEFAULT'|t }}</option>
+                                <option value="UTF-8">UTF-8</option>
+                                <option value="windows-1251">Windows-1251</option>
+                                <option value="UTF-16LE">UTF-16LE</option>
+                                <option value="UTF-16BE">UTF-16BE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cell medium-6 small-12">
+                        <div class="grid-container">
+                            <label for="delimiter">{{ 'FIELD_DELIMITER'|t }}</label>
+                            <select name="delimiter" id="delimiter">
+                                <option value="default">{{ 'DELIMITER_DEFAULT'|t }}</option>
+                                <option value="tab">{{ 'DELIMITER_TAB'|t }}</option>
+                                <option value="coma">{{ 'DELIMITER_COMA'|t }}</option>
+                                <option value="semicolon">{{ 'DELIMITER_SEMICOLON'|t }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="drop-area">
+                    <form class="drop-form">
+                        <p>{{ 'DROP_FILE_HERE'|t }}</p>
+                        <input type="file" name="files[]" id="fileElem"
+                               onchange="jQuery().filesHelper('handleFiles', this.files)">
+                        <label class="button" for="fileElem">{{ 'SELECT_FILE'|t }}</label>
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="cell medium-6 small-12">
+            <div class="grid-container">
+                <h5>{{ 'FILE_EXAMPLE'|t }}</h5>
+                <i class="far fa-file-excel" style="color: green"></i>
+                <span><a href="{{ createUrl('files', 'downloadDemo') }}"
+                         target="_blank">importFileExample.csv</a> <small>{{ 'ALLOWED_FILE_TYPES'|t|raw }}</small></span>
+            </div>
+        </div>
+    </div>
+    <div id="waiting" style="display:none">
+        <div class="grid-container">
+            <div class="grid-x secondary">
+                <div class="cell small-12 medium-6 margin-auto">
+                    <div class="preloader">
+                        <center>
+                            <img src="/LaximoSearch/template/assets/images/preloader.gif">
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
